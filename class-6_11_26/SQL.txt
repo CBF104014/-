@@ -1,0 +1,14 @@
+string cn_str = "????????????????????????????????????????";
+using (SqlConnection cn = new SqlConnection(cn_str))
+        {
+            cn.Open();
+            string com_str = "Select *  From login";
+            SqlCommand command = new SqlCommand(com_str, cn);            
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.Read()) {
+                if (reader["id"].Equals(id) && reader["pass"].Equals(pass))
+                {
+                    //output
+                }
+            }
+        }

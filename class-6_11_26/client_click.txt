@@ -1,0 +1,1 @@
+Page.ClientScript.RegisterStartupScript(Page.GetType(), "", "document.getElementById('open').click();", true);

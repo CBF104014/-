@@ -1,0 +1,28 @@
+private void Send_mail()
+    {
+        //產生驗證碼
+	//........
+
+        MailMessage mail = new MailMessage();
+
+        mail.From = new MailAddress("qwwewe567@gmail.com", "Mine");         //設定寄件者
+        mail.To.Add(new MailAddress("qwwewe56793@gmail.com"));              //設定收件者
+        mail.Priority = MailPriority.Normal;                                //優先等級
+        mail.Subject = "Mine-登入驗證碼";                                   //主旨
+        mail.Body = Server.HtmlEncode("你的驗證碼為：" + ????????????);              //Email 內容
+        mail.SubjectEncoding = Encoding.UTF8;
+        mail.BodyEncoding = Encoding.GetEncoding("utf-8");                  //設定編碼為 utf-8
+        mail.IsBodyHtml = true;                                             //設定Email 內容為HTML格式
+
+        SmtpClient smtpServer = new SmtpClient();                           //SMTP Server
+        smtpServer.Credentials = new System.Net.NetworkCredential("qwwewe567@gmail.com", "asdsdf567");  //帳號及密碼認證
+        smtpServer.Port = 587;                                              //ref http://mail.google.com/support/bin/answer.py?hl=en&answer=13287
+        smtpServer.Host = "smtp.gmail.com";                                 //指定寄信 SMTP 伺服器
+        smtpServer.EnableSsl = true;                                        //啟用 SSL
+        try {
+            smtpServer.Send(mail);                                          //寄出郵件            
+            Response.Output.Write("<script>alert('{0}')</script>", "傳送成功");
+        } catch (Exception) {
+            Response.Output.Write("<script>alert('{0}')</script>", "傳送失敗");
+        }
+    }
